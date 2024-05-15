@@ -1,0 +1,18 @@
+<div class="mb-8">
+    <img class="mx-auto mb-6 h-20" src="assets/icons/@FilePath" alt=""/>
+    <h2 class="uppercase">@Quality</h2>
+    <p class="font-thin">@Description</p>
+</div>
+
+@code {
+
+    [Parameter]
+    public string? FilePath { get; set; }
+    
+    [Parameter]
+    public string? Quality { get; set; }
+    
+    [Parameter]
+    public string? Description { get; set; }
+
+}

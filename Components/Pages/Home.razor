@@ -1,0 +1,44 @@
+﻿@page "/"
+@using QuicKeys_car_rental_website.Components.Layout
+
+<PageTitle>QuicKeys Car Rental</PageTitle>
+
+<header class="h-screen w-full bg-cover bg-center content-center mx-auto" style="background-image: url('assets/heroBg.webp')">
+    <Jumbotron></Jumbotron>
+</header>
+
+<section id="about" class="max-w-screen-xl flex flex-col lg:flex-row mx-auto my-20 px-5 md:px-8 lg:space-x-16">
+    <About></About>
+</section>
+<section class="bg-black">
+    <div class="max-w-screen-xl md:flex text-xs mx-auto text-center space-x-4 lg:space-x-16 text-white py-16 px-5 md:px-8">
+        <Qualities FilePath="seamless.png" Quality="Seamless" Description="Our commitment to seamless experiences extends to every facet of your car rental journey. From the moment you land on our user-friendly online booking platform to the swift and hassle-free pick-up and drop-off process, we prioritize eliminating any unnecessary complications. With QuicKeys, expect a rental experience devoid of stress or inconvenience, allowing you to fully savor your journey."></Qualities>
+        <Qualities FilePath="affordable.png" Quality="Affordable" Description="Understanding the significance of affordability, QuicKeys ensures that every customer receives exceptional value without compromise. Our dedication to offering competitive pricing and exclusive deals ensures that regardless of the duration of your rental – be it a day, a week, or more – you receive budget-friendly options tailored to your needs." />
+        <Qualities FilePath="diverse fleet.png" Quality="Diverse Fleet" Description="Diversity is at the core of our service ethos. We recognize that every traveler's requirements are unique, which is why we offer an extensive array of vehicles to cater to all preferences. From compact cars for urban adventures to spacious SUVs for family getaways, and even luxury options for special occasions, QuicKeys boasts a diverse fleet designed to enhance your journey in every way imaginable." />
+    </div>
+</section>
+
+<section id="testimonials" class="min-w-screen flex items-center justify-center">
+    <Testimonials></Testimonials>
+</section>
+
+<section id="faqs" class="max-w-screen-xl px-5 py-16 mx-auto">
+    <h1 class="text-6xl md:text-7xl font-bold mb-8 text-gray-600 text-center">Frequently Asked<br />Questions</h1>
+  
+    <div id="accordion-open" data-accordion="open">
+        <Faqs questionNumber="1" question="How old do I need to be to rent a car?" answer="To rent a vehicle with QuicKeys, you must meet two essential criteria: be of legal age and possess a valid driver's license. These requirements ensure compliance with local regulations and guarantee a safe and lawful rental experience. By having your driver's license and meeting the legal age requirement, you can confidently enjoy the convenience and flexibility of our rental services."></Faqs>
+        <Faqs questionNumber="2" question="What documents do I need to rent a car?" answer="Please note that a valid driver's license is required for renting a car with us. Ensuring you have your driver's license handy will streamline the rental process and ensure a smooth experience."></Faqs>
+        <Faqs questionNumber="3" question="What types of cars do you offer for rent?" answer="We provide a wide variety of automobiles to ensure you find the perfect car that suits your preferences."></Faqs>
+        <Faqs questionNumber="4" question="What are the payment method options?" answer="At QuicKeys, we accept payment over the counter for your rental fees, making the process convenient and straightforward for you."></Faqs>
+        <Faqs questionNumber="5" question="How do I pick up and return the rental car?" answer="You have the flexibility to pick up your car at our nearest branch or opt for convenient delivery to your location for a nominal fee. Similarly, when your rental period ends, we can collect the car from your specified destination or you can drop it off at our QuicKeys branch."></Faqs>
+        <Faqs questionNumber="6" question="What is the condition of the rental cars? Are they regularly maintained and cleaned?" answer="Our rental cars are regularly maintained and undergo thorough cleaning between rentals to ensure they are in optimal condition for our customers."></Faqs>
+    </div>
+</section>
+
+<section id="contact" class="bg-white border-t border-gray-200">
+    <Contact></Contact>
+</section>
+
+<footer class="bg-black">
+    <Footer></Footer>
+</footer>

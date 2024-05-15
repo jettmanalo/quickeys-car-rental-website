@@ -1,0 +1,36 @@
+Type,Brand,Model,Year,Seat Capacity,Transmission,Color,Plate Number,Availability,Rental Price per Day
+Sedan,Toyota,Vios,2019,5,Automatic,Silver,ABC1234,true,1800
+Sedan,Honda,City,2020,5,Manual,Black,XYZ5678,true,2200
+Sedan,Nissan,Almera,2018,5,Automatic,White,DEF1234,true,1700
+Sedan,Hyundai,Accent,2021,5,Manual,Blue,JKL1234,true,2300
+Sedan,Ford,Fiesta,2016,5,Automatic,Grey,MNO5678,true,1500
+Sedan,Kia,Rio,2020,5,Manual,Green,STU5678,true,2000
+Sedan,Suzuki,Ciaz,2018,5,Automatic,White,YZAB5678,true,1800
+Sedan,Mazda,Mazda3,2021,5,Automatic,Blue,EFG5678,true,2600
+SUV,Toyota,Fortuner,2019,7,Automatic,Silver,SUV1234,false,3000
+SUV,Ford,Explorer,2020,7,Automatic,Black,SUV5678,true,3200
+SUV,Mitsubishi,Montero Sport,2018,7,Automatic,White,SUV9102,true,2800
+SUV,Nissan,X-Trail,2017,5,Automatic,Red,SUV3456,true,2600
+SUV,Hyundai,Santa Fe,2021,7,Automatic,Blue,SUV7890,true,3100
+SUV,Honda,CR-V,2016,5,Manual,Gray,SUV2345,true,2500
+SUV,Chevrolet,Trailblazer,2019,7,Automatic,Yellow,SUV6789,true,2700
+SUV,Kia,Sorento,2020,7,Automatic,Green,SUV0123,true,2900
+SUV,Subaru,Forester,2017,5,Automatic,Black,SUV4567,true,3300
+SUV,Mazda,CX-5,2018,5,Automatic,White,SUV8901,true,3100
+Pickup,Toyota,Hilux,2019,5,Automatic,Silver,PIC1234,true,3500
+Pickup,Ford,Ranger,2020,5,Automatic,Black,PIC5678,true,3700
+Pickup,Mitsubishi,Strada,2018,5,Automatic,White,PIC9102,true,3200
+Pickup,Nissan,Navara,2017,5,Automatic,Red,PIC3456,true,3000
+Pickup,Chevrolet,Colorado,2021,5,Automatic,Blue,PIC7890,true,3600
+Pickup,Isuzu,D-Max,2016,5,Manual,Gray,PIC2345,true,2800
+Van,Toyota,Hiace,2019,12,Automatic,Silver,VAN1234,true,4000
+Van,Ford,Transit,2020,12,Automatic,Black,VAN5678,true,4200
+Van,Nissan,NV350,2021,12,Automatic,Blue,VAN7890,true,4100
+Van,Hyundai,H350,2016,12,Automatic,Gray,VAN2345,true,3800
+Convertible,Mazda,MX-5 Miata,2020,2,Manual,Red,CVT1234,true,4500
+Convertible,BMW,Series,2019,4,Automatic,Black,CVT5678,true,4800
+Convertible,Mercedes-Benz,C-Class,2021,4,Automatic,White,CVT9102,true,4700
+Convertible,Audi,A5,2018,4,Automatic,Blue,CVT3456,true,4200
+Off-road,Jeep,Wrangler,2020,4,Manual,Gray,JEP1234,true,3500
+Off-road,Jeep,Gladiator,2019,5,Manual,Red,JEP5678,true,3700
+Off-road,Jeep,CJ-7,1985,4,Manual,Green,JEP9102,true,3200

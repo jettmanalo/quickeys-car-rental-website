@@ -1,0 +1,484 @@
+@page "/reservation"
+@using QuicKeys_car_rental_website.Components.Layout
+@using System.IO;
+@using System.Linq;
+@using System.Net
+@using System.Net.Mail
+@rendermode InteractiveServer
+
+<Stepper Step="_step"></Stepper>
+
+<div class="max-w-screen-sm mx-5 md:mx-auto bg-[#f3fb73] px-5 py-12 rounded-lg @((_step != 1) ? "hidden" : "")">
+    <h2 class="text-2xl font-black mb-4 text-center">Pick Up and Return</h2>
+    <div class="flex space-x-4 mb-3">
+        <div class="w-full">
+            <label class="block mb-2 text-sm font-medium text-gray-900">Select date start</label>
+            <input @bind="Booking.PickUpDate" type="date" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-3">
+        </div>
+
+        <div class="w-full">
+            <label class="block mb-2 text-sm font-medium text-gray-900">Select date end</label>
+            <input @bind="Booking.ReturnDate" type="date" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-3">
+        </div>
+    </div>
+
+    <div class="flex space-x-4 mb-3">
+        <div class="w-full">
+            <label class="block mb-2 text-sm font-medium text-gray-900">Start time:</label>
+            <input @bind="Booking.PickUpTime" type="time" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-3" min="09:00" max="18:00" required/>
+        </div>
+
+        <div class="w-full">
+            <label class="block mb-2 text-sm font-medium text-gray-900">End time:</label>
+            <input @bind="Booking.ReturnTime" type="time" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-3" min="09:00" max="18:00" required/>
+        </div>
+    </div>
+
+    <div class="mb-3">
+        <label class="block mb-2 text-sm font-medium text-gray-900">Pick-Up Location</label>
+        <select @bind="Booking.PickUpLocation" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-3">
+            <option selected>Pick-Up Location</option>
+            <option value="Deliver to my address">Deliver to my address</option>
+            <option value="348 Maysilo Street, Mandaluyong, 1550 Metro Manila">348 Maysilo Street, Mandaluyong, 1550 Metro Manila</option>
+        </select>
+    </div>
+
+    <div>
+        <label class="block mb-2 text-sm font-medium text-gray-900">Return Location</label>
+        <select @bind="Booking.ReturnLocation" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-3">
+            <option selected>Return Location</option>
+            <option value="Collect from my address">Collect from my address</option>
+            <option value="348 Maysilo Street, Mandaluyong, 1550 Metro Manila">348 Maysilo Street, Mandaluyong, 1550 Metro Manila</option>
+        </select>
+    </div>
+</div>
+
+<div class="@((_step != 2) ? "hidden" : "") max-w-screen-xl px-5 md:mx-auto flex flex-col space-y-8 md:space-y-0 md:flex-row space-x-0 md:space-x-8">
+    <form class="w-full md:w-1/4" @onchange="CarFilter.LoadCarData">
+        <div class="p-5 bg-[#f3fb73] rounded-lg md:block">
+            <p class="flex mb-3 text-2xl font-black">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-funnel-fill me-2" viewBox="0 0 16 16">
+                    <path d="M1.5 1.5A.5.5 0 0 1 2 1h12a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.128.334L10 8.692V13.5a.5.5 0 0 1-.342.474l-3 1A.5.5 0 0 1 6 14.5V8.692L1.628 3.834A.5.5 0 0 1 1.5 3.5z"/>
+                </svg>
+                Filter
+            </p>
+            
+            <p class="block mb-2 text-sm font-medium text-gray-900">Price</p>
+            <div class="flex space-x-2 items-center">
+                <input @bind="CarFilter.MinPrice" type="number" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-3" placeholder="Min"/>
+                <p class="text-gray-500">to</p>
+                <input @bind="CarFilter.MaxPrice" type="text" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-3" placeholder="Max"/>
+            </div>
+
+            <div class="flex space-x-2 mt-3">
+                <div class="w-1/2">
+                    <label class="block mb-2 text-sm font-medium text-gray-900">Brand</label>
+                    <select @bind="CarFilter.Brand" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-3 mb-3">
+                        <option selected>Any</option>
+                        @foreach (var brand in CarFilter.Brands)
+                        {
+                            <option value="@brand">@brand</option>
+                        }
+                    </select>
+                </div>
+
+                <div class="w-1/2">
+                    <label class="block mb-2 text-sm font-medium text-gray-900">Type</label>
+                    <select @bind="CarFilter.Type" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-3 mb-3">
+                        <option selected>Any</option>
+                        @foreach (var type in CarFilter.Types)
+                        {
+                            <option value="@type">@type</option>
+                        }
+                    </select>
+                </div>
+            </div>
+
+            <div class="flex space-x-2">
+                <div class="w-1/2">
+                    <label class="block mb-2 text-sm font-medium text-gray-900">Model</label>
+                    <select @bind="CarFilter.Model" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-3 mb-3">
+                        <option selected>Any</option>
+                        @foreach (var model in CarFilter.Models)
+                        {
+                            <option value="@(model)">@(model)</option>
+                        }
+                    </select>
+                </div>
+
+                <div class="w-1/2">
+                    <label class="block mb-2 text-sm font-medium text-gray-900">Year</label>
+                    <input @bind="CarFilter.Year" type="number" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-3 mb-3"/>
+                </div>
+            </div>
+
+            <label class="block mb-2 text-sm font-medium text-gray-900">Seating Capacity</label>
+            <input @bind="CarFilter.NoOfSeats" type="number" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-3 mb-3"/>
+
+            <label class="block mb-2 text-sm font-medium text-gray-900">Transmission</label>
+            <select @bind="CarFilter.TransmissionType" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-3 mb-3">
+                <option selected>Any</option>
+                <option value="Automatic">Automatic</option>
+                <option value="Manual">Manual</option>
+            </select>
+        </div>
+    </form>
+
+    <section class="w-full md:w-3/4">
+        <h1 class="flex mb-3 text-2xl font-black">Available Cars</h1>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            @{
+                var filteredCars = CarFilter.CarListing.Where(car =>
+                    (CarFilter.Brand == null || CarFilter.Brand == "Any" || car.Brand == CarFilter.Brand) &&
+                    (CarFilter.Type == null || CarFilter.Type == "Any" || car.Type == CarFilter.Type) &&
+                    (CarFilter.NoOfSeats == 0 || car.NoOfSeats == CarFilter.NoOfSeats) &&
+                    (CarFilter.Model == null || CarFilter.Model == "Any" || car.Model == CarFilter.Model) &&
+                    (CarFilter.Year == 0 || car.Year == CarFilter.Year) &&
+                    (CarFilter.MinPrice == 0 || car.RentalPricePerDay >= CarFilter.MinPrice) &&
+                    (CarFilter.MaxPrice == 0 || car.RentalPricePerDay <= CarFilter.MaxPrice) &&
+                    (CarFilter.TransmissionType == null || CarFilter.TransmissionType == "Any" || car.TransmissionType == CarFilter.TransmissionType) &&
+                    car.Availability
+                ).ToList();
+            }
+
+            @foreach (var car in filteredCars.Where(car => car.Availability))
+            {
+                <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow flex flex-col justify-between">
+                    <img class="rounded-t-lg" src="assets/carImages/@(car.PlateNumber).jpg" alt=""/>
+
+                    <div class="p-5">
+                        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">@car.Brand @car.Model</h5>
+
+                        <div class="inline-flex rounded-md mb-3" role="group">
+                            <button type="button" class="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-900 bg-white rounded-s-lg">
+                                <img src="assets/icons/transmission.png" class="h-3 me-2" alt=""/>
+                                @car.TransmissionType
+                            </button>
+
+                            <button type="button" class="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-900 bg-white">
+                                <img src="assets/icons/seat.png" class="h-3 me-2" alt=""/>
+                                @car.NoOfSeats
+                            </button>
+
+                            <button type="button" class="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-900 bg-white rounded-e-lg">
+                                <img src="assets/icons/calendar.png" class="h-3 me-2" alt=""/>
+                                @car.Year
+                            </button>
+                        </div>
+
+                        <button @onclick="@(() => { if (car.PlateNumber != null) { Booking.SavePlateNumber(car.PlateNumber); } })" class="text-black bg-[#ffd41c] hover:bg-yellow-300 focus:ring-4 focus:outline-none focus:ring-yellow-200 font-medium rounded-lg text-sm px-4 py-2 text-center w-full">@car.RentalPricePerDay / Day</button>
+                    </div>
+                </div>
+            }
+        </div>
+    </section>
+</div>
+
+<div class="max-w-screen-xl flex flex-col md:flex-row space-x-0 md:space-x-6 space-y-8 md:space-y-0 px-5 md:mx-auto @((_step != 3) ? "hidden" : "")">
+    <section class="w-full md:w-1/2 bg-[#f3fb73] p-5 rounded-lg">
+        <h2 class="text-2xl font-black mb-4">Personal Details</h2>
+        
+        <p class="block mb-2 text-sm font-medium text-gray-900">Name</p>
+        <div class="flex space-x-6 mb-3">
+            <input @bind="Booking.FirstName" type="text" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-3 mb-3" placeholder="First Name" required/>
+            <input @bind="Booking.LastName" type="text" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-3 mb-3" placeholder="Last Name" required/>
+        </div>
+        
+        <p class="block mb-2 text-sm font-medium text-gray-900">Contact</p>
+        <div class="flex space-x-6 mb-3">
+            <input @bind="Booking.Email" type="email" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-3 mb-3" placeholder="E-mail" required/>
+            <input @bind="Booking.Phone" type="text" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-3 mb-3" placeholder="Phone Number" required/>
+        </div>
+        
+        <p class="block mb-2 text-sm font-medium text-gray-900">Address</p>
+        <div class="flex space-x-6">
+            <input @bind="Booking.Address" type="text" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-3 mb-3" placeholder="House No./ Street/ Zone" required/>
+            <input @bind="Booking.City" type="text" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-3 mb-3" placeholder="City" required/>
+        </div>
+        
+        <div class="flex space-x-6">
+            <input @bind="Booking.Province" type="text" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-3 mb-3" placeholder="Province" required/>
+            <input @bind="Booking.PostalCode" type="text" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-3 mb-3" placeholder="Postal Code" required/>
+        </div>
+        
+    </section>
+    
+    <section class="w-full md:w-1/2 bg-[#f3fb73] p-5 rounded-lg">
+        <h2 class="text-2xl font-black mb-4">Driver Details</h2>
+        
+        <p class="block mb-2 text-sm font-medium text-gray-900">Name</p>
+        <div class="flex space-x-6 mb-3">
+            <input @bind="Booking.DriverFirstName" type="text" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-3 mb-3" placeholder="First Name" required/>
+            <input @bind="Booking.DriverLastName" type="text" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-3 mb-3" placeholder="Last Name" required/>
+        </div>
+        
+        <label class="block mb-2 text-sm font-medium text-gray-900">License</label>
+        <input @bind="Booking.DriverLicenseNumber" type="text" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-3 mb-6 w-1/2" placeholder="License Number" required/>
+        
+        <label class="block mb-2 text-sm font-medium text-gray-900">Date of Birth</label>
+        <input @bind="Booking.DriverDateOfBirth" type="date" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-3 mb-3 w-1/2" required/>
+    </section>
+</div>
+
+<div class="flex justify-center my-8 space-x-4">
+    <button @onclick="DecrementStep" type="button" class="text-black bg-[#ffd41c] hover:bg-yellow-300 focus:ring-4 focus:outline-none focus:ring-yellow-200 font-medium rounded-lg text-sm px-4 py-2 text-center">Back</button>
+    @if (_step == 3)
+    {
+        <a href="#"><button @onclick="Booking.ConfirmBooking" type="button" class="text-black bg-[#ffd41c] hover:bg-yellow-300 focus:ring-4 focus:outline-none focus:ring-yellow-200 font-medium rounded-lg text-sm px-4 py-2 text-center">Submit</button></a>
+    }
+    else
+    {
+        <button @onclick="IncrementStep" type="button" class="text-black bg-[#ffd41c] hover:bg-yellow-300 focus:ring-4 focus:outline-none focus:ring-yellow-200 font-medium rounded-lg text-sm px-4 py-2 text-center">Next</button>
+    }
+
+</div>
+
+@code {
+
+    private static int _step = 1;
+    
+    private static void IncrementStep()
+    {
+        _step = _step < 3 ? _step + 1 : _step;
+    }
+    
+    private static void DecrementStep()
+    {
+        _step = _step > 1 ? _step - 1 : _step;
+    }
+    
+    public abstract class Booking
+    {
+        public static DateOnly? PickUpDate { get; set; }
+        public static TimeOnly? PickUpTime { get; set; }
+        public static string? PickUpLocation { get; set; }
+        public static DateOnly? ReturnDate { get; set; }
+        public static TimeOnly? ReturnTime { get; set; }
+        public static string? ReturnLocation { get; set; }
+        public static string? PlateNumber { get; set; }
+        public static string? FirstName { get; set; }
+        public static string? LastName { get; set; }
+        public static string? Email { get; set; }
+        public static string? Phone { get; set; }
+        public static string? Address { get; set; }
+        public static string? City { get; set; }
+        public static string? Province { get; set; }
+        public static string? PostalCode { get; set; }
+        public static string? DriverFirstName { get; set; }
+        public static string? DriverLastName { get; set; }
+        public static string? DriverLicenseNumber { get; set; }
+        public static DateOnly? DriverDateOfBirth { get; set; }
+        private static string? CsvData { get; set; }
+        
+        public static void SavePlateNumber(string plateNum) {
+            PlateNumber = plateNum;
+            _step++;
+        }
+
+        public static void ConfirmBooking()
+        {
+            CsvData = $"{PickUpDate};{PickUpTime};{PickUpLocation};{ReturnDate};{ReturnTime};{ReturnLocation};{PlateNumber};{FirstName} {LastName};{Email};{Phone};{Address}, {City}, {Province}, {PostalCode};{DriverFirstName} {DriverLastName};{DriverLicenseNumber};{DriverDateOfBirth}";
+
+            File.AppendAllText("wwwroot/assets/csv/rentHistory.csv", "\n" + CsvData);
+            if (PlateNumber != null) UpdateAvailability(PlateNumber, false);
+
+            if (Email == null) return;
+            if (PlateNumber != null)
+                EmailSender.SendEmail(Email, PlateNumber);
+        }
+        
+        private static void UpdateAvailability(string plateNumber, bool availability)
+        {
+            const string filePath = "wwwroot/assets/csv/cars.csv";
+            var lines = File.ReadAllLines(filePath);
+
+            for (var i = 1; i < lines.Length; i++)
+            {
+                var columns = lines[i].Split(',');
+
+                if (columns.Length < 9 || columns[7] != plateNumber) continue;
+                columns[8] = availability.ToString().ToLower();
+                lines[i] = string.Join(",", columns);
+                break;
+            }
+
+            File.WriteAllLines(filePath, lines);
+        }
+    }
+    
+    public abstract class CarFilter
+    {
+        public static List<string> Brands { get; set; } = [];
+        public static List<string> Types { get; set; } = [];
+        public static List<string> Models { get; set; } = [];
+        public static string? Brand { get; set; }
+        public static string? Type { get; set; }
+        public static int NoOfSeats { get; set; }
+        public static string? Model { get; set; }
+        public static int Year { get; set; }
+        public static double MinPrice { get; set; }
+        public static double MaxPrice { get; set; }
+        public static string? TransmissionType { get; set; }
+        public static readonly List<Car> CarListing = [];
+        
+        public static void LoadCarData()
+        {
+            var lines = File.ReadAllLines("wwwroot/assets/csv/cars.csv");
+
+            CarListing.Clear();
+            Brands.Clear();
+            Types.Clear();
+            Models.Clear();
+
+            for (var i = 1; i < lines.Length; i++)
+            {
+                var data = lines[i].Split(',');
+
+                var car = new Car
+                {
+                    Type = data[0],
+                    Brand = data[1],
+                    Model = data[2],
+                    Year = int.Parse(data[3]),
+                    NoOfSeats = int.Parse(data[4]),
+                    TransmissionType = data[5],
+                    PlateNumber = data[7],
+                    Availability = Convert.ToBoolean(data[8]),
+                    RentalPricePerDay = double.Parse(data[9])
+                };
+
+                CarListing.Add(car);
+
+                if (!Brands.Contains(car.Brand))
+                {
+                    Brands.Add(car.Brand);
+                }
+
+                if (!Models.Contains(car.Model))
+                {
+                    Models.Add(car.Model);
+                }
+            
+                if (!Types.Contains(car.Type))
+                {
+                    Types.Add(car.Type);
+                }
+            }
+        }
+    }
+    
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        CarFilter.LoadCarData();
+    }
+    
+    public class Car
+    {
+        public string? Type { get; init; }
+        public string? Brand { get; init; }
+        public string? Model { get; init; }
+        public int Year { get; init; }
+        public int NoOfSeats { get; init; }
+        public string? TransmissionType { get; init; }
+        public string? PlateNumber { get; init; }
+        public bool Availability { get; init; }
+        public double RentalPricePerDay { get; init; }
+    }
+
+    public abstract class EmailSender
+    {
+        private const string SmtpServer = "smtp.gmail.com";
+        private const int SmtpPort = 587;
+        private const string SenderEmailAddress = "quickeys4@gmail.com";
+        private const string SenderEmailPassword = "pvyj tejb xtoh ytyf";
+        private const string SenderName = "QuicKeys Team";
+        
+        public static void SendEmail(string toAddress, string plateNumber)
+        {
+            try
+            {
+                var client = new SmtpClient(SmtpServer, SmtpPort)
+                {
+                    Credentials = new NetworkCredential(SenderEmailAddress, SenderEmailPassword),
+                    EnableSsl = true
+                };
+
+                var mailMessage = new MailMessage(SenderEmailAddress, toAddress)
+                {
+                    Subject = $"Booking Confirmation for {Booking.FirstName} {Booking.LastName} - {Booking.PickUpDate} to {Booking.ReturnDate}",
+                    Body = ComposeEmailBody(),
+                    IsBodyHtml = false
+                };
+
+                client.Send(mailMessage);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"An error occurred while sending the email: {ex.Message}");
+            }
+        }
+        
+        private static string ComposeEmailBody()
+        {
+            var lines = File.ReadAllLines("wwwroot/assets/csv/cars.csv");
+
+            foreach (var line in lines)
+            {
+                var data = line.Split(',');
+
+                if (data.Length < 9 || data[7] != Booking.PlateNumber) continue;
+                var carDetails = $"Car Details:\n" +
+                                 $"- Plate Number: {data[7]}\n" +
+                                 $"- Brand: {data[1]}\n" +
+                                 $"- Type: {data[0]}\n" +
+                                 $"- Model: {data[2]}\n" +
+                                 $"- Year: {data[3]}\n" +
+                                 $"- Seat Capacity: {data[4]}\n" +
+                                 $"- Transmission: {data[5]}\n" +
+                                 $"- Color: {data[6]}\n" +
+                                 $"- Rental Price per Day: \u20b1{data[9]}\n";
+                
+                var pickUpDateTime = DateTime.Parse(Booking.PickUpDate + " " + Booking.PickUpTime);
+                var returnDateTime = DateTime.Parse(Booking.ReturnDate + " " + Booking.ReturnTime);
+                var duration = returnDateTime - pickUpDateTime;
+                var numberOfDays = (int)Math.Ceiling(duration.TotalHours / 24);
+
+                var rentalPricePerDay = double.Parse(data[9]);
+                var totalPrice = numberOfDays * rentalPricePerDay;
+
+                return $"Dear {Booking.FirstName} {Booking.LastName},\n\n" +
+                       $"We are pleased to confirm your booking with us for the following details:\n\n" +
+                       $"Pick Up Date: {Booking.PickUpDate}\n" +
+                       $"Pick Up Time: {Booking.PickUpTime}\n" +
+                       $"Pick Up Location: {Booking.PickUpLocation}\n\n" +
+                       $"Return Date: {Booking.ReturnDate}\n" +
+                       $"Return Time: {Booking.ReturnTime}\n" +
+                       $"Return Location: {Booking.ReturnLocation}\n\n" +
+                       $"{carDetails}\n" +
+                       $"Personal Details:\n" +
+                       $"- First Name: {Booking.FirstName}\n" +
+                       $"- Last Name: {Booking.LastName}\n" +
+                       $"- Email: {Booking.Email}\n" +
+                       $"- Phone: {Booking.Phone}\n" +
+                       $"- Address: {Booking.Address}\n" +
+                       $"- City: {Booking.City}\n" +
+                       $"- Province: {Booking.Province}\n" +
+                       $"- Postal Code: {Booking.PostalCode}\n\n" +
+                       $"Driver Details:\n" +
+                       $"- Driver's First Name: {Booking.DriverFirstName}\n" +
+                       $"- Driver's Last Name: {Booking.DriverLastName}\n" +
+                       $"- Driver's License Number: {Booking.DriverLicenseNumber}\n" +
+                       $"- Driver's Date of Birth: {Booking.DriverDateOfBirth}\n\n" +
+                       $"Total Price: \u20b1{totalPrice}\n\n" +
+                       $"If you have any further questions or need assistance, please do not hesitate to contact us. " +
+                       $"We look forward to serving you and hope you have a pleasant journey with us.\n\n" +
+                       $"Best regards,\n" +
+                       $"{SenderName}";
+            }
+
+            return string.Empty;
+        }
+    }
+
+}

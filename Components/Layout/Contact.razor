@@ -1,0 +1,97 @@
+@page "/contact"
+
+@using System;
+@using System.ComponentModel.DataAnnotations;
+@using System.Linq;
+@using System.Net;
+@using System.Net.Mail;
+@inject NavigationManager NavigationManager
+@rendermode InteractiveServer
+
+<div class="py-8 lg:py-16 px-4 mx-auto max-w-screen-lg">
+    <h1 class="text-6xl md:text-7xl font-bold mb-5 text-gray-600 text-center">Get in touch</h1>
+    
+    <form class="space-y-8" @onsubmit="HandleFormSubmission">
+        <div class="flex space-x-6">
+            <div class="w-1/2">
+                <label class="block mb-2 text-sm font-medium text-gray-900">Full Name</label>
+                <input @bind="Email.FullName" type="text" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-3" placeholder="John Doe" required>
+            </div>
+            
+            <div class="w-1/2">
+                <label class="block mb-2 text-sm font-medium text-gray-900">Email</label>
+                <input @bind="Email.UserEmail" type="email" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-3" placeholder="johndoe@email.com" required>
+            </div>
+        </div>
+        
+        <div>
+            <label for="subject" class="block mb-2 text-sm font-medium text-gray-900">Subject</label>
+            <input @bind="Email.Subject" type="text" id="subject" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-3" placeholder="Let us know how we can help you" required>
+        </div>
+        
+        <div class="sm:col-span-2">
+            <label for="message" class="block mb-2 text-sm font-medium text-gray-900">Message</label>
+            <textarea @bind="Email.Message" id="message" rows="6" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-3" placeholder="Leave a comment..." required></textarea>
+        </div>
+        
+        <button @onclick="() => {NavigationManager.NavigateTo(NavigationManager.Uri, forceLoad: true);}" type="submit" class="text-black bg-[#ffd41c] hover:bg-yellow-300 focus:ring-4 focus:outline-none focus:ring-yellow-200 font-medium rounded-lg text-sm px-4 py-2 text-center block mx-auto">Send message</button>
+    </form>
+</div>
+
+@code {
+
+    class Email
+    {
+        public static string? FullName { get; set; }
+        public static string? UserEmail { get; set; }
+        public static string? Subject { get; set; }
+        public static string? Message { get; set; }
+    }
+
+    private void HandleFormSubmission()
+    {
+        const string replySubject = "Thank You for Reaching Out!";
+        var replyBody = $"Hello {Email.FullName},\n\nThank you for contacting us! Your message has been received, and we greatly appreciate you taking the time to reach out to us.\n\nOur team is dedicated to providing prompt and helpful assistance, and we will do our best to respond to your inquiry as soon as possible. In the meantime, please feel free to browse our website for more information about our services or products.\n\nIf you have any further questions or concerns, don't hesitate to let us know. We're here to help!\n\nBest Regards,\n\nQuicKeys Team";
+        
+        var body = $"Sender: {Email.FullName}\nEmail: {Email.UserEmail}\n\nMessage: {Email.Message}";
+        
+        if (Email.UserEmail == null) return;
+        if (Email.FullName == null) return;
+        if (Email.Subject == null) return;
+        if (Email.Message != null)
+            SendEmail("quickeys4@gmail.com", Email.Subject, body);
+            SendEmail(Email.UserEmail, replySubject, replyBody);
+    }
+
+    private void SendEmail(string email, string subject, string body)
+    {
+        try
+        {
+            const string fromAddress = "quickeys4@gmail.com";
+
+            const string smtpServer = "smtp.gmail.com";
+            const int smtpPort = 587;
+
+            const string appPassword = "pvyj tejb xtoh ytyf";
+
+            var client = new SmtpClient(smtpServer, smtpPort)
+            {
+                Credentials = new NetworkCredential(fromAddress, appPassword),
+                EnableSsl = true
+            };
+
+            var mailMessage = new MailMessage(fromAddress, email)
+            {
+                Subject = $"{subject}",
+                Body = body
+            };
+            
+            client.Send(mailMessage);
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(email);
+            Console.WriteLine($"An error occurred while sending the email: {ex.Message}");
+        }
+    }
+}
