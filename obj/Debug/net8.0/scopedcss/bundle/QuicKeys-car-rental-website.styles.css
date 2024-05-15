@@ -1,0 +1,25 @@
+/* _content/QuicKeys-car-rental-website/Components/Layout/NavMenu.razor.rz.scp.css */
+.custom-nav-link[b-f0idpwc82o] {
+    display: block;
+    padding: 0.5rem 0.75rem;
+    color: white;
+    border: 1px solid #ccc;
+    transition: background-color 0.3s, color 0.3s;
+    border-radius: 0.375rem;
+}
+
+.custom-nav-link:hover[b-f0idpwc82o] {
+    background-color: #4a5568;
+    color: #ffd41c;
+}
+
+@media (min-width: 768px) {
+    .custom-nav-link[b-f0idpwc82o] {
+        border: 0;
+        padding: 0;
+    }
+
+    .custom-nav-link:hover[b-f0idpwc82o] {
+        background-color: transparent;
+    }
+}

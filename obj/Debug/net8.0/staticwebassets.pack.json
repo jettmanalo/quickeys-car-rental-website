@@ -1,0 +1,217 @@
+{
+  "Files": [
+    {
+      "Id": "/Users/jettmanalo/Developer/QuicKeys-car-rental-website/QuicKeys-car-rental-website/wwwroot/assets/about.jpg",
+      "PackagePath": "staticwebassets/assets/about.jpg"
+    },
+    {
+      "Id": "/Users/jettmanalo/Developer/QuicKeys-car-rental-website/QuicKeys-car-rental-website/wwwroot/assets/carImages/ABC1234.jpg",
+      "PackagePath": "staticwebassets/assets/carImages/ABC1234.jpg"
+    },
+    {
+      "Id": "/Users/jettmanalo/Developer/QuicKeys-car-rental-website/QuicKeys-car-rental-website/wwwroot/assets/carImages/CVT1234.jpg",
+      "PackagePath": "staticwebassets/assets/carImages/CVT1234.jpg"
+    },
+    {
+      "Id": "/Users/jettmanalo/Developer/QuicKeys-car-rental-website/QuicKeys-car-rental-website/wwwroot/assets/carImages/CVT3456.jpg",
+      "PackagePath": "staticwebassets/assets/carImages/CVT3456.jpg"
+    },
+    {
+      "Id": "/Users/jettmanalo/Developer/QuicKeys-car-rental-website/QuicKeys-car-rental-website/wwwroot/assets/carImages/CVT5678.jpg",
+      "PackagePath": "staticwebassets/assets/carImages/CVT5678.jpg"
+    },
+    {
+      "Id": "/Users/jettmanalo/Developer/QuicKeys-car-rental-website/QuicKeys-car-rental-website/wwwroot/assets/carImages/CVT9102.jpg",
+      "PackagePath": "staticwebassets/assets/carImages/CVT9102.jpg"
+    },
+    {
+      "Id": "/Users/jettmanalo/Developer/QuicKeys-car-rental-website/QuicKeys-car-rental-website/wwwroot/assets/carImages/DEF1234.jpg",
+      "PackagePath": "staticwebassets/assets/carImages/DEF1234.jpg"
+    },
+    {
+      "Id": "/Users/jettmanalo/Developer/QuicKeys-car-rental-website/QuicKeys-car-rental-website/wwwroot/assets/carImages/EFG5678.jpg",
+      "PackagePath": "staticwebassets/assets/carImages/EFG5678.jpg"
+    },
+    {
+      "Id": "/Users/jettmanalo/Developer/QuicKeys-car-rental-website/QuicKeys-car-rental-website/wwwroot/assets/carImages/GHI5678.jpg",
+      "PackagePath": "staticwebassets/assets/carImages/GHI5678.jpg"
+    },
+    {
+      "Id": "/Users/jettmanalo/Developer/QuicKeys-car-rental-website/QuicKeys-car-rental-website/wwwroot/assets/carImages/JEP1234.jpg",
+      "PackagePath": "staticwebassets/assets/carImages/JEP1234.jpg"
+    },
+    {
+      "Id": "/Users/jettmanalo/Developer/QuicKeys-car-rental-website/QuicKeys-car-rental-website/wwwroot/assets/carImages/JEP5678.jpg",
+      "PackagePath": "staticwebassets/assets/carImages/JEP5678.jpg"
+    },
+    {
+      "Id": "/Users/jettmanalo/Developer/QuicKeys-car-rental-website/QuicKeys-car-rental-website/wwwroot/assets/carImages/JEP9102.jpg",
+      "PackagePath": "staticwebassets/assets/carImages/JEP9102.jpg"
+    },
+    {
+      "Id": "/Users/jettmanalo/Developer/QuicKeys-car-rental-website/QuicKeys-car-rental-website/wwwroot/assets/carImages/JKL1234.jpg",
+      "PackagePath": "staticwebassets/assets/carImages/JKL1234.jpg"
+    },
+    {
+      "Id": "/Users/jettmanalo/Developer/QuicKeys-car-rental-website/QuicKeys-car-rental-website/wwwroot/assets/carImages/MNO5678.jpg",
+      "PackagePath": "staticwebassets/assets/carImages/MNO5678.jpg"
+    },
+    {
+      "Id": "/Users/jettmanalo/Developer/QuicKeys-car-rental-website/QuicKeys-car-rental-website/wwwroot/assets/carImages/PIC1234.jpg",
+      "PackagePath": "staticwebassets/assets/carImages/PIC1234.jpg"
+    },
+    {
+      "Id": "/Users/jettmanalo/Developer/QuicKeys-car-rental-website/QuicKeys-car-rental-website/wwwroot/assets/carImages/PIC2345.jpg",
+      "PackagePath": "staticwebassets/assets/carImages/PIC2345.jpg"
+    },
+    {
+      "Id": "/Users/jettmanalo/Developer/QuicKeys-car-rental-website/QuicKeys-car-rental-website/wwwroot/assets/carImages/PIC3456.jpg",
+      "PackagePath": "staticwebassets/assets/carImages/PIC3456.jpg"
+    },
+    {
+      "Id": "/Users/jettmanalo/Developer/QuicKeys-car-rental-website/QuicKeys-car-rental-website/wwwroot/assets/carImages/PIC5678.jpg",
+      "PackagePath": "staticwebassets/assets/carImages/PIC5678.jpg"
+    },
+    {
+      "Id": "/Users/jettmanalo/Developer/QuicKeys-car-rental-website/QuicKeys-car-rental-website/wwwroot/assets/carImages/PIC7890.jpg",
+      "PackagePath": "staticwebassets/assets/carImages/PIC7890.jpg"
+    },
+    {
+      "Id": "/Users/jettmanalo/Developer/QuicKeys-car-rental-website/QuicKeys-car-rental-website/wwwroot/assets/carImages/PIC9102.jpg",
+      "PackagePath": "staticwebassets/assets/carImages/PIC9102.jpg"
+    },
+    {
+      "Id": "/Users/jettmanalo/Developer/QuicKeys-car-rental-website/QuicKeys-car-rental-website/wwwroot/assets/carImages/PQR1234.jpg",
+      "PackagePath": "staticwebassets/assets/carImages/PQR1234.jpg"
+    },
+    {
+      "Id": "/Users/jettmanalo/Developer/QuicKeys-car-rental-website/QuicKeys-car-rental-website/wwwroot/assets/carImages/STU5678.jpg",
+      "PackagePath": "staticwebassets/assets/carImages/STU5678.jpg"
+    },
+    {
+      "Id": "/Users/jettmanalo/Developer/QuicKeys-car-rental-website/QuicKeys-car-rental-website/wwwroot/assets/carImages/SUV0123.jpg",
+      "PackagePath": "staticwebassets/assets/carImages/SUV0123.jpg"
+    },
+    {
+      "Id": "/Users/jettmanalo/Developer/QuicKeys-car-rental-website/QuicKeys-car-rental-website/wwwroot/assets/carImages/SUV1234.jpg",
+      "PackagePath": "staticwebassets/assets/carImages/SUV1234.jpg"
+    },
+    {
+      "Id": "/Users/jettmanalo/Developer/QuicKeys-car-rental-website/QuicKeys-car-rental-website/wwwroot/assets/carImages/SUV2345.jpg",
+      "PackagePath": "staticwebassets/assets/carImages/SUV2345.jpg"
+    },
+    {
+      "Id": "/Users/jettmanalo/Developer/QuicKeys-car-rental-website/QuicKeys-car-rental-website/wwwroot/assets/carImages/SUV3456.jpg",
+      "PackagePath": "staticwebassets/assets/carImages/SUV3456.jpg"
+    },
+    {
+      "Id": "/Users/jettmanalo/Developer/QuicKeys-car-rental-website/QuicKeys-car-rental-website/wwwroot/assets/carImages/SUV4567.jpg",
+      "PackagePath": "staticwebassets/assets/carImages/SUV4567.jpg"
+    },
+    {
+      "Id": "/Users/jettmanalo/Developer/QuicKeys-car-rental-website/QuicKeys-car-rental-website/wwwroot/assets/carImages/SUV5678.jpg",
+      "PackagePath": "staticwebassets/assets/carImages/SUV5678.jpg"
+    },
+    {
+      "Id": "/Users/jettmanalo/Developer/QuicKeys-car-rental-website/QuicKeys-car-rental-website/wwwroot/assets/carImages/SUV6789.jpg",
+      "PackagePath": "staticwebassets/assets/carImages/SUV6789.jpg"
+    },
+    {
+      "Id": "/Users/jettmanalo/Developer/QuicKeys-car-rental-website/QuicKeys-car-rental-website/wwwroot/assets/carImages/SUV7890.jpg",
+      "PackagePath": "staticwebassets/assets/carImages/SUV7890.jpg"
+    },
+    {
+      "Id": "/Users/jettmanalo/Developer/QuicKeys-car-rental-website/QuicKeys-car-rental-website/wwwroot/assets/carImages/SUV8901.jpg",
+      "PackagePath": "staticwebassets/assets/carImages/SUV8901.jpg"
+    },
+    {
+      "Id": "/Users/jettmanalo/Developer/QuicKeys-car-rental-website/QuicKeys-car-rental-website/wwwroot/assets/carImages/SUV9102.jpg",
+      "PackagePath": "staticwebassets/assets/carImages/SUV9102.jpg"
+    },
+    {
+      "Id": "/Users/jettmanalo/Developer/QuicKeys-car-rental-website/QuicKeys-car-rental-website/wwwroot/assets/carImages/VAN1234.jpg",
+      "PackagePath": "staticwebassets/assets/carImages/VAN1234.jpg"
+    },
+    {
+      "Id": "/Users/jettmanalo/Developer/QuicKeys-car-rental-website/QuicKeys-car-rental-website/wwwroot/assets/carImages/VAN2345.jpg",
+      "PackagePath": "staticwebassets/assets/carImages/VAN2345.jpg"
+    },
+    {
+      "Id": "/Users/jettmanalo/Developer/QuicKeys-car-rental-website/QuicKeys-car-rental-website/wwwroot/assets/carImages/VAN5678.jpg",
+      "PackagePath": "staticwebassets/assets/carImages/VAN5678.jpg"
+    },
+    {
+      "Id": "/Users/jettmanalo/Developer/QuicKeys-car-rental-website/QuicKeys-car-rental-website/wwwroot/assets/carImages/VAN7890.jpg",
+      "PackagePath": "staticwebassets/assets/carImages/VAN7890.jpg"
+    },
+    {
+      "Id": "/Users/jettmanalo/Developer/QuicKeys-car-rental-website/QuicKeys-car-rental-website/wwwroot/assets/carImages/VWX1234.jpg",
+      "PackagePath": "staticwebassets/assets/carImages/VWX1234.jpg"
+    },
+    {
+      "Id": "/Users/jettmanalo/Developer/QuicKeys-car-rental-website/QuicKeys-car-rental-website/wwwroot/assets/carImages/XYZ5678.jpg",
+      "PackagePath": "staticwebassets/assets/carImages/XYZ5678.jpg"
+    },
+    {
+      "Id": "/Users/jettmanalo/Developer/QuicKeys-car-rental-website/QuicKeys-car-rental-website/wwwroot/assets/carImages/YZAB5678.jpg",
+      "PackagePath": "staticwebassets/assets/carImages/YZAB5678.jpg"
+    },
+    {
+      "Id": "/Users/jettmanalo/Developer/QuicKeys-car-rental-website/QuicKeys-car-rental-website/wwwroot/assets/csv/cars.csv",
+      "PackagePath": "staticwebassets/assets/csv/cars.csv"
+    },
+    {
+      "Id": "/Users/jettmanalo/Developer/QuicKeys-car-rental-website/QuicKeys-car-rental-website/wwwroot/assets/csv/rentHistory.csv",
+      "PackagePath": "staticwebassets/assets/csv/rentHistory.csv"
+    },
+    {
+      "Id": "/Users/jettmanalo/Developer/QuicKeys-car-rental-website/QuicKeys-car-rental-website/wwwroot/assets/heroBg.webp",
+      "PackagePath": "staticwebassets/assets/heroBg.webp"
+    },
+    {
+      "Id": "/Users/jettmanalo/Developer/QuicKeys-car-rental-website/QuicKeys-car-rental-website/wwwroot/assets/icons/affordable.png",
+      "PackagePath": "staticwebassets/assets/icons/affordable.png"
+    },
+    {
+      "Id": "/Users/jettmanalo/Developer/QuicKeys-car-rental-website/QuicKeys-car-rental-website/wwwroot/assets/icons/calendar.png",
+      "PackagePath": "staticwebassets/assets/icons/calendar.png"
+    },
+    {
+      "Id": "/Users/jettmanalo/Developer/QuicKeys-car-rental-website/QuicKeys-car-rental-website/wwwroot/assets/icons/diverse fleet.png",
+      "PackagePath": "staticwebassets/assets/icons/diverse fleet.png"
+    },
+    {
+      "Id": "/Users/jettmanalo/Developer/QuicKeys-car-rental-website/QuicKeys-car-rental-website/wwwroot/assets/icons/seamless.png",
+      "PackagePath": "staticwebassets/assets/icons/seamless.png"
+    },
+    {
+      "Id": "/Users/jettmanalo/Developer/QuicKeys-car-rental-website/QuicKeys-car-rental-website/wwwroot/assets/icons/seat.png",
+      "PackagePath": "staticwebassets/assets/icons/seat.png"
+    },
+    {
+      "Id": "/Users/jettmanalo/Developer/QuicKeys-car-rental-website/QuicKeys-car-rental-website/wwwroot/assets/icons/transmission.png",
+      "PackagePath": "staticwebassets/assets/icons/transmission.png"
+    },
+    {
+      "Id": "/Users/jettmanalo/Developer/QuicKeys-car-rental-website/QuicKeys-car-rental-website/wwwroot/assets/logo.svg",
+      "PackagePath": "staticwebassets/assets/logo.svg"
+    },
+    {
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.QuicKeys-car-rental-website.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.build.QuicKeys-car-rental-website.props",
+      "PackagePath": "build\\QuicKeys-car-rental-website.props"
+    },
+    {
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.buildMultiTargeting.QuicKeys-car-rental-website.props",
+      "PackagePath": "buildMultiTargeting\\QuicKeys-car-rental-website.props"
+    },
+    {
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.buildTransitive.QuicKeys-car-rental-website.props",
+      "PackagePath": "buildTransitive\\QuicKeys-car-rental-website.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

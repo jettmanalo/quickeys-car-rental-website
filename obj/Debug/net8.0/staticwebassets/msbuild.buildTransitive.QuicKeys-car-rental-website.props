@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="../buildMultiTargeting/QuicKeys-car-rental-website.props" />
+</Project>
